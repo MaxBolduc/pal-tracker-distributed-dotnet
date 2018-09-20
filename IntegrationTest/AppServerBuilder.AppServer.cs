@@ -25,7 +25,7 @@ namespace IntegrationTest
                 _database = database;
 
                 var appPath = $"{AppContext.BaseDirectory}../../../../Applications/{appName}";
-                _dllPath = $"{appPath}/bin/Debug/netcoreapp2.0/{appName}.dll";
+                _dllPath = $"{appPath}/bin/Debug/netcoreapp2.1/{appName}.dll";
 
                 _startInfo = new ProcessStartInfo
                 {

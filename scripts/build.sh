@@ -9,10 +9,10 @@ mkdir -p $build_output
 mkdir -p $artifacts_path
 
 # compile apps 
-(cd Applications/AllocationsServer && dotnet publish  --configuration Release --output $build_output/allocations/Applications/AllocationsServer/bin/Release/netcoreapp2.0/publish)
-(cd Applications/BacklogServer && dotnet publish --configuration Release --output $build_output/backlog/Applications/BacklogServer/bin/Release/netcoreapp2.0/publish)
-(cd Applications/RegistrationServer && dotnet publish --configuration Release --output $build_output/registration/Applications/RegistrationServer/bin/Release/netcoreapp2.0/publish)
-(cd Applications/TimesheetsServer && dotnet publish --configuration Release --output $build_output/timesheets/Applications/TimesheetsServer/bin/Release/netcoreapp2.0/publish)
+(cd Applications/AllocationsServer && dotnet publish  --configuration Release --output $build_output/allocations/Applications/AllocationsServer/bin/Release/netcoreapp2.1/publish)
+(cd Applications/BacklogServer && dotnet publish --configuration Release --output $build_output/backlog/Applications/BacklogServer/bin/Release/netcoreapp2.1/publish)
+(cd Applications/RegistrationServer && dotnet publish --configuration Release --output $build_output/registration/Applications/RegistrationServer/bin/Release/netcoreapp2.1/publish)
+(cd Applications/TimesheetsServer && dotnet publish --configuration Release --output $build_output/timesheets/Applications/TimesheetsServer/bin/Release/netcoreapp2.1/publish)
 
 # bundle cf manifest with app
 cp manifest-allocations.yml $build_output/allocations/

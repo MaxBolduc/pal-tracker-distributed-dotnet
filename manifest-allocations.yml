@@ -3,9 +3,11 @@ applications:
 - name: tracker-allocations
   instances: 1
   memory: 256M
+  buildpacks:
+  - https://github.com/cloudfoundry/dotnet-core-buildpack#v2.1.4
   routes:
   - route: allocations-pal-mbgm.apps.pikes.pal.pivotal.io
-  path: Applications/AllocationsServer/bin/Release/netcoreapp2.0/publish
+  path: Applications/AllocationsServer/bin/Release/netcoreapp2.1/publish
   env:
     GRANT_TYPE: client_credentials
   services:

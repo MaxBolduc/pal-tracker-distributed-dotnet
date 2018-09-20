@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
-using Microsoft.Rest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
@@ -76,7 +75,7 @@ namespace IntegrationTest
             HttpResponseMessage response;
 
             response = _httpClient.Get(_registrationServer.Url());
-            Assert.Equal("Noop!", response.Content.AsString());
+            Assert.Equal("Noop!", response.Content.ReadAsStringAsync().Result);
 
             var createdUserId = _httpClient.Post(_registrationServer.Url("/registration"), new Dictionary<string, object>
             {
@@ -85,7 +84,7 @@ namespace IntegrationTest
             AssertGreaterThan(createdUserId, 0);
 
             response = _httpClient.Get(_registrationServer.Url($"/users/{createdUserId}"));
-            AssertNotNullOrEmpty(response.Content.AsString());
+            AssertNotNullOrEmpty(response.Content.ReadAsStringAsync().Result);
             Assert.True(response.IsSuccessStatusCode);
 
             var createdAccountId = _httpClient.Get(_registrationServer.Url($"/accounts?ownerId={createdUserId}"))
@@ -100,11 +99,11 @@ namespace IntegrationTest
             AssertGreaterThan(createdProjectId, 0);
 
             response = _httpClient.Get(_registrationServer.Url($"/projects?accountId={createdAccountId}"));
-            AssertNotNullOrEmpty(response.Content.AsString());
+            AssertNotNullOrEmpty(response.Content.ReadAsStringAsync().Result);
             Assert.True(response.IsSuccessStatusCode);
 
             response = _httpClient.Get(_allocationsServer.Url());
-            Assert.Equal("Noop!", response.Content.AsString());
+            Assert.Equal("Noop!", response.Content.ReadAsStringAsync().Result);
 
             var createdAllocationId = _httpClient.Post( _allocationsServer.Url($"/allocations?projectId={createdProjectId}"), new Dictionary<string, object>
             {
@@ -116,11 +115,11 @@ namespace IntegrationTest
             AssertGreaterThan(createdAllocationId, 0);
 
             response = _httpClient.Get(_allocationsServer.Url($"/allocations?projectId={createdProjectId}"));
-            AssertNotNullOrEmpty(response.Content.AsString());
+            AssertNotNullOrEmpty(response.Content.ReadAsStringAsync().Result);
             Assert.True(response.IsSuccessStatusCode);
 
             response = _httpClient.Get(_backlogServer.Url());
-            Assert.Equal("Noop!", response.Content.AsString());
+            Assert.Equal("Noop!", response.Content.ReadAsStringAsync().Result);
 
             var createdStoryId = _httpClient.Post(_backlogServer.Url("/stories"), new Dictionary<string, object>
             {
@@ -130,11 +129,11 @@ namespace IntegrationTest
             AssertGreaterThan(createdStoryId, 0);
 
             response = _httpClient.Get(_backlogServer.Url($"/stories?projectId={createdProjectId}"));
-            AssertNotNullOrEmpty(response.Content.AsString());
+            AssertNotNullOrEmpty(response.Content.ReadAsStringAsync().Result);
             Assert.True(response.IsSuccessStatusCode);
 
             response = _httpClient.Get(_timesheetsServer.Url());
-            Assert.Equal("Noop!", response.Content.AsString());
+            Assert.Equal("Noop!", response.Content.ReadAsStringAsync().Result);
 
             var createdTimeEntryId = _httpClient.Post(_timesheetsServer.Url("/time-entries"), new Dictionary<string, object>
             {
@@ -146,7 +145,7 @@ namespace IntegrationTest
             AssertGreaterThan(createdTimeEntryId, 0);
 
             response = _httpClient.Get(_timesheetsServer.Url($"/time-entries?projectId={createdProjectId}"));
-            AssertNotNullOrEmpty(response.Content.AsString());
+            AssertNotNullOrEmpty(response.Content.ReadAsStringAsync().Result);
             Assert.True(response.IsSuccessStatusCode);
         }
 

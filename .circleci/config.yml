@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: 'microsoft/dotnet:2-sdk'
+      - image: 'microsoft/dotnet:2.1-sdk'
         environment:
           DEBIAN_FRONTEND: "noninteractive"
     steps:
@@ -48,7 +48,7 @@ jobs:
 
   deployAllocations:
     docker:
-      - image: 'microsoft/dotnet:2-sdk'
+      - image: 'microsoft/dotnet:2.1-sdk'
         environment:
           DEBIAN_FRONTEND: "noninteractive"
           EXTRACT_DEST: /tmp/extracted-archive
@@ -88,7 +88,7 @@ jobs:
 
   deployBacklog:
     docker:
-      - image: 'microsoft/dotnet:2-sdk'
+      - image: 'microsoft/dotnet:2.1-sdk'
         environment:
           DEBIAN_FRONTEND: "noninteractive"
           EXTRACT_DEST: /tmp/extracted-archive
@@ -128,7 +128,7 @@ jobs:
 
   deployRegistration:
     docker:
-      - image: 'microsoft/dotnet:2-sdk'
+      - image: 'microsoft/dotnet:2.1-sdk'
         environment:
           DEBIAN_FRONTEND: "noninteractive"
           EXTRACT_DEST: /tmp/extracted-archive
@@ -168,7 +168,7 @@ jobs:
 
   deployTimesheets:
     docker:
-      - image: 'microsoft/dotnet:2-sdk'
+      - image: 'microsoft/dotnet:2.1-sdk'
         environment:
           DEBIAN_FRONTEND: "noninteractive"
           EXTRACT_DEST: /tmp/extracted-archive
